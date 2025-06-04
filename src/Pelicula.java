@@ -1,12 +1,12 @@
 public class Pelicula {
     private String titulo;
-    private String anio; // año
+    private int anio; // año
     private String director;
     private String genero;
 
 
     // Constructor
-    public Pelicula(String titulo, String anio, String director, String genero) {
+    public Pelicula(String titulo, int anio, String director, String genero) {
         this.titulo = titulo;
         this.anio = anio;
         this.director = director;
@@ -22,7 +22,7 @@ public class Pelicula {
     }
 
     // setter para año
-    public void setAnio(String anio) {
+    public void setAnio(int anio) {
         this.anio = anio;
     }
 
@@ -45,7 +45,7 @@ public class Pelicula {
     }
 
     // getter para año
-    public String getAnio() {
+    public int getAnio() {
         return anio;
     }
 
@@ -60,5 +60,20 @@ public class Pelicula {
     }
 
 
+    // Metodo para validar los campos
+    public void validar() throws IllegalArgumentException {
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("El título no puede estar vacío");
+        }
+        if (anio < 1900 || anio > 2025) {
+            throw new IllegalArgumentException("Año inválido");
+        }
+        if (director == null || director.trim().isEmpty()) {
+            throw new IllegalArgumentException("Director no puede estar vacío");
+        }
+        if (genero == null || genero.trim().isEmpty()) {
+            throw new IllegalArgumentException("Genero no puede estar vacío");
+        }
+    }
 
 }
