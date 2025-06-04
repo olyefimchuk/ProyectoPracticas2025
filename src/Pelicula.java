@@ -1,20 +1,27 @@
 public class Pelicula {
+    private String id;
     private String titulo;
-    private int anio; // año
-    private String director;
+    private String anio; // año
+    private String autor;
     private String genero;
 
 
     // Constructor
-    public Pelicula(String titulo, int anio, String director, String genero) {
+    public Pelicula(String id, String titulo, String anio, String autor, String genero) {
+        this.id = id;
         this.titulo = titulo;
         this.anio = anio;
-        this.director = director;
+        this.autor = autor;
         this.genero = genero;
     }
 
 
     /*** Setters ***/
+
+    // setter para id
+    public void setId(String id) {
+        this.id = id;
+    }
 
     // setter para titulo
     public void setTitulo(String titulo) {
@@ -22,13 +29,13 @@ public class Pelicula {
     }
 
     // setter para año
-    public void setAnio(int anio) {
+    public void setAnio(String anio) {
         this.anio = anio;
     }
 
-    // setter para director
-    public void setDirector(String director) {
-        this.director = director;
+    // setter para autor
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     // setter para genero
@@ -39,19 +46,24 @@ public class Pelicula {
 
     /*** Getters ***/
 
+    // getter para id
+    public String getId() {
+        return id;
+    }
+
     // getter para titulo
     public String getTitulo() {
         return titulo;
     }
 
     // getter para año
-    public int getAnio() {
+    public String getAnio() {
         return anio;
     }
 
-    // getter para director
-    public String getDirector() {
-        return director;
+    // getter para Autor
+    public String getAutor() {
+        return autor;
     }
 
     // getter para genero
@@ -65,11 +77,12 @@ public class Pelicula {
         if (titulo == null || titulo.trim().isEmpty()) {
             throw new IllegalArgumentException("El título no puede estar vacío");
         }
-        if (anio < 1900 || anio > 2025) {
+        int numAnio = Integer.parseInt(anio);
+        if (numAnio < 1900 || numAnio > 2025) {
             throw new IllegalArgumentException("Año inválido");
         }
-        if (director == null || director.trim().isEmpty()) {
-            throw new IllegalArgumentException("Director no puede estar vacío");
+        if (autor == null || autor.trim().isEmpty()) {
+            throw new IllegalArgumentException("Autor no puede estar vacío");
         }
         if (genero == null || genero.trim().isEmpty()) {
             throw new IllegalArgumentException("Genero no puede estar vacío");
