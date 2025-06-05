@@ -24,4 +24,7 @@ public class CatalogoPeliculas {
         return peliculas;
     }
 
+    public void setPeliculas(List<Pelicula> peliculas) {
+        this.peliculas = peliculas;
+    }
 }

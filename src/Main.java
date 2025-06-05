@@ -2,15 +2,18 @@ import gui.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel; // Importa la subclase necesaria para trabajar con los datos de una tabla
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         CatalogoPeliculas catalogo = new CatalogoPeliculas();
+        catalogo.setPeliculas(Database.cargarPeliculas());
 
         VentanaPrincipal ventana = new VentanaPrincipal();
+
+        actualizarTabla(ventana.getModeloTabla(), catalogo.getPeliculas());
+
 
         //Cuando se pulse el boton de añadir:
         ventana.getBotonAnadir().addActionListener(new ActionListener() {
