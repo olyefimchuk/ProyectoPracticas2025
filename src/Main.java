@@ -79,10 +79,15 @@ public class Main {
                         public void actionPerformed(ActionEvent e) {
                             //Recogemos los datos nuevos
 
-                            peliculaSeleccionada.setTitulo(formulario.getTitulo());
-                            peliculaSeleccionada.setAnio(formulario.getAnio());
-                            peliculaSeleccionada.setAutor(formulario.getAutor());
-                            peliculaSeleccionada.setGenero(formulario.getGenero());
+                            Pelicula peliculaModificada = new Pelicula(peliculaSeleccionada.getId(), formulario.getTitulo(), formulario.getAnio(), formulario.getAutor(), formulario.getGenero());
+
+                            if (peliculaModificada.valido(formulario)) {
+                                peliculaSeleccionada.setTitulo(formulario.getTitulo());
+                                peliculaSeleccionada.setAnio(formulario.getAnio());
+                                peliculaSeleccionada.setAutor(formulario.getAutor());
+                                peliculaSeleccionada.setGenero(formulario.getGenero());
+                            }
+
 
                             actualizarTabla(ventana.getModeloTabla(), catalogo.getPeliculas()); //actualizamos la tabla
                             formulario.dispose(); //cerramos el formulario
