@@ -34,12 +34,13 @@ public class Main {
                         //Metemos la nueva pelicula en una lista
                         Pelicula pelicula = new Pelicula(id, titulo, anio, autor, genero); // Creamos objeto de la clase Pelicula
                         if (catalogo.agregarPelicula(pelicula, formulario)) {
+                            Database.insertarPelicula(pelicula);
                             actualizarTabla(ventana.getModeloTabla(), catalogo.getPeliculas()); //Actualizamos la tabla
                             formulario.dispose(); //Cerramos el formulario
                         }
                     }
                 });
-                formulario.setVisible(true);    //Miestra el formulario
+                formulario.setVisible(true);    //Muestra el formulario
             }
         });
         //Cuando se pulse el boton de eliminar:
@@ -48,6 +49,8 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 int fila = ventana.getTablaPeliculas().getSelectedRow(); //Para obtener la fila que el usuario ha seleccionado
                 if (fila != -1){    //Si ha seleccionado alguna fila
+                    Pelicula peliculaEliminar = catalogo.getPeliculas().get(fila);
+                    Database.eliminarPelicula(peliculaEliminar.getId());
                     catalogo.getPeliculas().remove(fila); //Eliminamos esa fila
                     actualizarTabla(ventana.getModeloTabla(), catalogo.getPeliculas()); //Actualizamos la tabla
                 } else {    //Si no selecciona nada, muestra un aviso
@@ -86,6 +89,7 @@ public class Main {
                                 peliculaSeleccionada.setAnio(formulario.getAnio());
                                 peliculaSeleccionada.setAutor(formulario.getAutor());
                                 peliculaSeleccionada.setGenero(formulario.getGenero());
+                                Database.actualizarPelicula(peliculaSeleccionada);
                             }
 
 
