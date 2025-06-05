@@ -73,14 +73,7 @@ public class Main {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             //Recogemos los datos nuevos
-                           /* String id = peliculaSeleccionada[0];
-                            String titulo = formulario.getTitulo();
-                            String anio = formulario.getAnio();
-                            String autor = formulario.getAutor();
-                            String genero = formulario.getGenero();
-                            //Reemplazamos los datos viejos por los nuevos
-                            String[] peliculaNueva = new String[]{id, titulo, anio, autor, genero};
-                            listaPeliculas.set(fila, peliculaNueva);*/
+
                             peliculaSeleccionada.setTitulo(formulario.getTitulo());
                             peliculaSeleccionada.setAnio(formulario.getAnio());
                             peliculaSeleccionada.setAutor(formulario.getAutor());

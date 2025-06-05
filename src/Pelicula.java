@@ -74,17 +74,17 @@ public class Pelicula {
 
     // Metodo para validar los campos
     public void validar() throws IllegalArgumentException {
-        if (titulo == null || titulo.trim().isEmpty()) {
+        if (titulo == null) {
             throw new IllegalArgumentException("El título no puede estar vacío");
         }
         int numAnio = Integer.parseInt(anio);
         if (numAnio < 1900 || numAnio > 2025) {
             throw new IllegalArgumentException("Año inválido");
         }
-        if (autor == null || autor.trim().isEmpty()) {
+        if (autor == null) {
             throw new IllegalArgumentException("Autor no puede estar vacío");
         }
-        if (genero == null || genero.trim().isEmpty()) {
+        if (genero == null) {
             throw new IllegalArgumentException("Genero no puede estar vacío");
         }
     }

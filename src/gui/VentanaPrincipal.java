@@ -21,7 +21,12 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);    //Centra la ventana
         modeloTabla = new DefaultTableModel();  //crea el modelo de la tabla
         modeloTabla.setColumnIdentifiers(new String[]{"Id", "Titulo", "Año", "Autor", "Genero"});   //Las columnas de la tabla
-        tablaPeliculas = new JTable(modeloTabla);   //Crea la tabla y le pasamos el modelo
+        tablaPeliculas = new JTable(modeloTabla) { //Crea la tabla y le pasamos el modelo
+            @Override
+            public boolean isCellEditable(int row, int column) { // Para que el usuario no pueda modificar los campos seleccionados
+                return false;
+            }
+        };
         JScrollPane scrollPane = new JScrollPane(tablaPeliculas);   //Añadimos scroll a la tabla, por si hay varias películas
         //Creamos los botones
         botonAnadir = new JButton("Añadir");
