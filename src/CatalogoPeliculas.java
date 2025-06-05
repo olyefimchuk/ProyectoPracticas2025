@@ -1,3 +1,5 @@
+import gui.FormularioPelicula;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +12,12 @@ public class CatalogoPeliculas {
         peliculas = new ArrayList<>();
     }
 
-    public void agregarPelicula(Pelicula pelicula) throws IllegalArgumentException {
-        pelicula.validar();
-        peliculas.add(pelicula);
+    public boolean agregarPelicula(Pelicula pelicula, FormularioPelicula formulario) {
+        if (pelicula.valido(formulario)) {
+            peliculas.add(pelicula);
+            return true;
+        }
+        return false;
     }
 
     public List<Pelicula> getPeliculas() {

@@ -1,3 +1,5 @@
+import gui.FormularioPelicula;
+
 public class Pelicula {
     private String id;
     private String titulo;
@@ -8,11 +10,11 @@ public class Pelicula {
 
     // Constructor
     public Pelicula(String id, String titulo, String anio, String autor, String genero) {
-        this.id = id;
-        this.titulo = titulo;
-        this.anio = anio;
-        this.autor = autor;
-        this.genero = genero;
+        this.id = id.trim();
+        this.titulo = titulo.trim();
+        this.anio = anio.trim();
+        this.autor = autor.trim();
+        this.genero = genero.trim();
     }
 
 
@@ -73,19 +75,40 @@ public class Pelicula {
 
 
     // Metodo para validar los campos
-    public void validar() throws IllegalArgumentException {
-        if (titulo == null) {
-            throw new IllegalArgumentException("El título no puede estar vacío");
+    public boolean valido(FormularioPelicula formulario) {
+
+        try {
+            formulario.limpiarError(); // para quitar texto de error
+
+            if (titulo == null || titulo.trim().isEmpty()) {
+                formulario.mostrarError("El título no puede estar vacío");
+                return false;
+            }
+
+            try {
+                int numAnio = Integer.parseInt(anio);
+                if (numAnio < 1900 || numAnio > 2025) {
+                    formulario.mostrarError("Año inválido");
+                    return false;
+                }
+            }
+            catch (NumberFormatException ex) {
+                formulario.mostrarError("El año debe ser un numero entero entre 1900 y 2025");
+                return false;
+            }
+            if (autor == null || autor.trim().isEmpty()) {
+                formulario.mostrarError("El autor no puede estar vacío");
+                return false;
+            }
+            if (genero == null || genero.trim().isEmpty()) {
+                formulario.mostrarError("El genero no puede estar vacío");
+                return false;
+            }
+            return true;
         }
-        int numAnio = Integer.parseInt(anio);
-        if (numAnio < 1900 || numAnio > 2025) {
-            throw new IllegalArgumentException("Año inválido");
-        }
-        if (autor == null) {
-            throw new IllegalArgumentException("Autor no puede estar vacío");
-        }
-        if (genero == null) {
-            throw new IllegalArgumentException("Genero no puede estar vacío");
+        catch (Exception ex) {
+            formulario.mostrarError("Error inesperado: " + ex.getMessage());
+            return false;
         }
     }
 

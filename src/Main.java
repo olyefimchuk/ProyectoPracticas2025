@@ -17,6 +17,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FormularioPelicula formulario = new FormularioPelicula(ventana);    //Abrimos el formulario para rellenar los datos
+                formulario.limpiarError(); // para quitar texto de error
                 //Cuando se pulse el boton del formulario:
                 formulario.getBotonConfirmar().addActionListener(new ActionListener() {
                     @Override
@@ -28,10 +29,11 @@ public class Main {
                         String autor = formulario.getAutor();
                         String genero = formulario.getGenero();
                         //Metemos la nueva pelicula en una lista
-                        Pelicula pelicula = new Pelicula(id, titulo, anio, autor, genero);
-                        catalogo.agregarPelicula(pelicula);
-                        actualizarTabla(ventana.getModeloTabla(), catalogo.getPeliculas()); //Actualizamos la tabla
-                        formulario.dispose(); //Cerramos el formulario
+                        Pelicula pelicula = new Pelicula(id, titulo, anio, autor, genero); // Creamos objeto de la clase Pelicula
+                        if (catalogo.agregarPelicula(pelicula, formulario)) {
+                            actualizarTabla(ventana.getModeloTabla(), catalogo.getPeliculas()); //Actualizamos la tabla
+                            formulario.dispose(); //Cerramos el formulario
+                        }
                     }
                 });
                 formulario.setVisible(true);    //Miestra el formulario
